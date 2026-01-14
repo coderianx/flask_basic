@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ user.username }} - Profil</title>
+    <style>
+        /* Basit ve şık stil */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f2f4f7;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            padding: 30px;
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        p {
+            color: #555;
+            margin-bottom: 20px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            color: #fff;
+            background-color: #007bff;
+            transition: 0.3s;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .small {
+            color: #888;
+            font-size: 0.9em;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Profil: {{ user.username }}</h1>
+
+        {% if logged_in_user %}
+            {% if logged_in_user == user.username %}
+                <p>Bu senin profilin 😊</p>
+                <a href="/logout" class="btn">Çıkış Yap</a>
+            {% else %}
+                <p>Bu kullanıcı herkese açık profili. 👀</p>
+            {% endif %}
+        {% else %}
+            <p>Giriş yapılmamış kullanıcı profili. 👤</p>
+            <a href="/login" class="btn">Giriş Yap</a>
+        {% endif %}
+
+        <p class="small">Bu profil sayfası tüm kullanıcılar tarafından görüntülenebilir.</p>
+    </div>
+</body>
+</html>
